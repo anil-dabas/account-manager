@@ -23,7 +23,7 @@ public class AccountManagerController {
 
     @PostMapping("/transaction")
     ResponseEntity<TransactionDTO> createTransaction(@RequestBody CreateTransactionRequest transactionRequest) throws AccountDoesNotExistException {
-        return new ResponseEntity<>(accountService.createTransaction(transactionRequest),HttpStatus.OK);
+        return new ResponseEntity<>(accountService.createTransaction(transactionRequest),HttpStatus.CREATED);
     }
 
 }
