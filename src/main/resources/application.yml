@@ -17,3 +17,6 @@ spring:
     open-in-view: false
   sql:
     init.mode: never
+springdoc:
+  swagger-ui:
+    path: /ui.html
