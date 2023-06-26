@@ -37,13 +37,9 @@ public class AccountServiceImpl implements AccountService{
         // Getting Accounts for Transaction
         List<Account> accountDOs = accountRepository.findByAccountNumberIn(List.of(transactionRequest.getFromAccountNumber(),transactionRequest.getToAccountNumber()));
 
-        // Accounts validity check
-        if(accountDOs.size() != 2)
-            throw  new AccountDoesNotExistException();
-
         // From and To accounts
-        Account fromAccount = accountDOs.stream().filter(account -> transactionRequest.getFromAccountNumber().equals(account.getAccountNumber())).findFirst().get();
-        Account toAccount = accountDOs.stream().filter(account -> transactionRequest.getToAccountNumber().equals(account.getAccountNumber())).findFirst().get();
+        Account fromAccount = accountDOs.stream().filter(account -> transactionRequest.getFromAccountNumber().equals(account.getAccountNumber())).findFirst().orElseThrow(AccountDoesNotExistException::new);
+        Account toAccount = accountDOs.stream().filter(account -> transactionRequest.getToAccountNumber().equals(account.getAccountNumber())).findFirst().orElseThrow(AccountDoesNotExistException::new);
 
         Transaction transaction = Transaction.builder()
                 .fromAccountNumber(transactionRequest.getFromAccountNumber())
