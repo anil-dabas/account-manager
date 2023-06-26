@@ -2,7 +2,6 @@ package com.acmebank.accountmanager.behaviouraltest;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.springframework.http.HttpStatus;
 
@@ -17,7 +16,6 @@ public class AccountManagerCheckBalanceSteps {
     public void check_account_balance(String accountNumber) {
         String checkBalanceURL = "/account/"+accountNumber;
         response = given().port(8085).get(checkBalanceURL);
-        //response = RestAssured.get(checkBalanceURL);
     }
 
     @Then("the account balance should be {string}")
