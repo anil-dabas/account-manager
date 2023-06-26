@@ -1,0 +1,9 @@
+server:
+  port: 8085
+spring:
+  datasource:
+    url: jdbc:h2:mem:testDB
+  jpa:
+    open-in-view: false
+  sql:
+    init.mode: always
